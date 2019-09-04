@@ -69,12 +69,12 @@ public List<ProfileDao> ListAllUsers()
 
 
     public ProfileDao updateUser(Integer id, ProfileDao profile){
-        logger.debug("updateProduct called "+ id);
+
         Optional<Profile> prod = profileRepository.findById(id);
-        logger.debug("updateProduct called "+ prod);
+
         if(prod.isPresent() && prod != null){
             Profile updateProd = mapper.updateUser(profile, prod.get());
-            logger.debug("updateProduct called "+ updateProd);
+            logger.debug("updateUser called "+ updateProd);
 
             Profile savedProfile = profileRepository.save(updateProd);
 
@@ -84,6 +84,16 @@ public List<ProfileDao> ListAllUsers()
         }else{
             return null;
         }
+
+    }
+    public boolean deleteUser(String id) {
+        logger.debug("deleteUser called");
+        //profileRepository.deleteByUsername(username);
+        profileRepository.deleteById(Integer.parseInt(id));
+//        if(this.getProductById(id).isPresent())
+            //return false;
+//        else
+            return true;
 
     }
 

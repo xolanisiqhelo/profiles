@@ -12,11 +12,8 @@ import profiles.models.Profile;
 )
 public interface LoginMapper {
             Profile updateUser(ProfileDao in,Profile out);
-
             LoginDao asLoginDao(Profile in);
-
             Profile asProfile(ProfileDao in);
-
             ProfileDao asProfileDao(Profile in);
 
 
