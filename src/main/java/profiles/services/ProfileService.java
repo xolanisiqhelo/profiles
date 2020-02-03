@@ -25,13 +25,12 @@ public class ProfileService {
 
     public Object loginUser(String username, String password) {
         Profile user = profileRepository.findByUsername(username);
-
         logger.debug("login response " + user);
         if(user.getUsername().equals(username) && user.getPassword().equals(password)){
             LoginDao loginDao = mapper.asLoginDao(user);
             loginDao.setLoginStatus(true);
-
             return loginDao;
+
         }else{
             return false;
         }

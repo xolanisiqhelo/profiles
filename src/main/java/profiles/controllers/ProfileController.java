@@ -42,17 +42,20 @@ public class ProfileController {
 
 
     @ApiOperation(value = "Search a user with an username and password",response = Profile.class)
-    @RequestMapping(value = "", method= RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "get/user", method= RequestMethod.GET, produces = "application/json")
     public ResponseEntity<Object> showUser(@RequestParam(name = "username") String username, @RequestParam(name = "password") String pass){
+        System.out.println("username"+username);
+        System.out.println("password"+pass);
         try{
             return new ResponseEntity<>(profileService.loginUser(username, pass), HttpStatus.OK);
+
         }catch(Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_GATEWAY);
         }
     }
 
     @ApiOperation(value = "Create profile", response = ProfileDao.class)
-    @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "post/user", method = RequestMethod.POST, produces = "application/json")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully created profile", response = ProfileDao.class),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
